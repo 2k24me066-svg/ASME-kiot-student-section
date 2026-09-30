@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASME KIOT Student Section - Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #003461;
+            --primary-blue: #006398;
+            --primary-light: #d3e4ff;
+            --primary-lighter: #cce5ff;
+            --bg-light: #f2f3ff;
+            --bg-very-light: #faf8ff;
+            --bg-accent: #eaedff;
+            --text-dark: #003461;
+            --text-medium: #424750;
+            --text-light: #727781;
+            --white: #fff;
+            --shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-very-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 16px;
+            max-width: 100%;
+        }
+
+        .wrapper {
+            width: 100%;
+            background-color: var(--bg-very-light);
+            padding-top: 112px;
+            padding-bottom: 80px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(to bottom, rgba(226, 231, 255, 0.6), transparent 50%, var(--bg-very-light));
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--primary-lighter);
+            padding: 4px 12px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            width: fit-content;
+        }
+
+        .tag-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-blue);
+            border-radius: var(--radius-lg);
+        }
+
+        .tag-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #001d31;
+        }
+
+        .hero-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            letter-spacing: -0.9px;
+            line-height: 1;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--primary-blue);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 192px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 52, 97, 0.8), transparent);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .hero-image-overlay img {
+            width: 16.5px;
+            height: 15.75px;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-medium);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hero-description strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-dark);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-light);
+            color: var(--text-dark);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-lighter);
+        }
+
+        .btn img {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 8px 16px;
+            margin-bottom: 16px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding: 0 0 4px 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-accent {
+            width: 6px;
+            height: 16px;
+            background-color: var(--primary-dark);
+            border-radius: var(--radius-lg);
+        }
+
+        .section-accent.blue {
+            background-color: var(--primary-blue);
+        }
+
+        .section-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--text-dark);
+        }
+
+        .section-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.48px;
+            text-transform: uppercase;
+            color: var(--text-medium);
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== BENCHMARKS SECTION ===== */
+        .benchmarks {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .benchmarks-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .benchmarks-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benchmarks-title img {
+            width: 13.333px;
+            height: 13.333px;
+        }
+
+        .benchmarks-label {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.08px;
+            color: var(--text-dark);
+        }
+
+        .benchmarks-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.48px;
+            text-transform: uppercase;
+            color: var(--text-medium);
+        }
+
+        .benchmarks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .benchmark-card {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 84px;
+        }
+
+        .benchmark-card.small {
+            min-height: 72px;
+        }
+
+        .benchmark-value {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.12px;
+            line-height: 1;
+            color: var(--text-dark);
+        }
+
+        .benchmark-value.blue {
+            color: var(--primary-blue);
+        }
+
+        .benchmark-value-badge {
+            background-color: var(--primary-dark);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            width: fit-content;
+        }
+
+        .benchmark-value-badge .benchmark-value {
+            color: #004b87;
+        }
+
+        .benchmark-value-badge-dark {
+            background-color: #522900;
+        }
+
+        .benchmark-value-badge-dark .benchmark-value {
+            color: #733c00;
+        }
+
+        .benchmark-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.36px;
+            text-transform: uppercase;
+            color: var(--text-medium);
+            margin-top: 4px;
+        }
+
+        /* ===== PORTAL MODULES SECTION ===== */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .module-card {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 156px;
+        }
+
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .module-icon img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .module-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.08px;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .module-description {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 1.54;
+            color: var(--text-medium);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .about-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.48px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+        }
+
+        .about-heading {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .about-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-medium);
+            margin-bottom: 16px;
+        }
+
+        .vision-card {
+            background-color: var(--primary-dark);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .vision-card::after {
+            content: '';
+            position: absolute;
+            bottom: -23.67px;
+            right: -24px;
+            width: 96px;
+            height: 96px;
+            background-color: rgba(0, 99, 152, 0.3);
+            border-radius: var(--radius-lg);
+            filter: blur(12px);
+        }
+
+        .vision-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vision-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+        }
+
+        .vision-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 1.375;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== MISSION PILLARS ===== */
+        .mission-pillars {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .mission-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .mission-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.08px;
+            color: var(--text-dark);
+        }
+
+        .pillar-item {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .pillar-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .pillar-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-lg);
+            background-color: var(--primary-light);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .pillar-icon img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pillar-text {
+            font-size: 13px;
+            line-height: 1.54;
+            color: #131b2e;
+        }
+
+        /* ===== PHILOSOPHY SECTION ===== */
+        .philosophy {
+            background-color: var(--bg-accent);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .philosophy-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.48px;
+            text-transform: uppercase;
+            color: var(--text-medium);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .philosophy-items {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 0 0 8px 0;
+        }
+
+        .philosophy-item {
+            background-color: var(--white);
+            padding: 4px 10px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.36px;
+            color: var(--text-dark);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .philosophy-item.active {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .philosophy-separator {
+            width: 10.667px;
+            height: 10.667px;
+            flex-shrink: 0;
+        }
+
+        /* ===== INSTITUTIONAL SECTION ===== */
+        .institutional {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .inst-header {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .inst-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-dark);
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        .inst-icon img {
+            width: 20.167px;
+            height: 16.5px;
+        }
+
+        .inst-info {
+            flex: 1;
+        }
+
+        .inst-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.48px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 4px;
+        }
+
+        .inst-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.08px;
+            color: var(--text-dark);
+        }
+
+        .inst-image {
+            width: 100%;
+            height: 144px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .inst-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .inst-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 52, 97, 0.8), rgba(0, 52, 97, 0.3) 50%, transparent);
+            padding: 8px;
+            color: white;
+            font-size: 13px;
+        }
+
+        .inst-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .inst-detail-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .inst-detail-icon {
+            width: 9.333px;
+            height: 13.333px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .inst-detail-text {
+            font-size: 13px;
+            color: var(--text-medium);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 24px 16px;
+            text-align: center;
+            border-top: 1px solid transparent;
+        }
+
+        .footer-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+                margin: 0 auto;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .section {
+                padding: 8px 24px;
+            }
+
+            .modules-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .benchmark-card {
+                min-height: auto;
+            }
+
+            .hero-buttons {
+                gap: 12px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px;
+            }
+
+            .modules-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .benchmarks-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .hero {
+                padding: 32px;
+            }
+
+            .section {
+                padding: 16px 32px;
+            }
+        }
+
+        /* Image placeholder styles */
+        .icon-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="tag-dot"></span>
+                    <span class="tag-text">LEARN • CREATE • CONNECT • LEAD</span>
+                </div>
+
+                <div>
+                    <div class="hero-subtitle">STUDENT SECTION • CHAPTER #9824</div>
+                    <h1 class="hero-title">
+                        ASME KIOT<br>
+                        <span>Student Section</span>
+                    </h1>
+                </div>
+
+                <div class="hero-image">
+                    <img src="https://www.figma.com/api/mcp/asset/7642f47e-ed2e-405a-8371-6e2b4cd980f1.png" alt="KIOT Campus">
+                    <div class="hero-image-overlay">
+                        <svg width="16.5" height="15.75" viewBox="0 0 16.5 15.75" style="flex-shrink: 0;">
+                            <path d="M8.25 0L10.13 5.87H16.5L11.69 9.56L13.56 15.44L8.25 11.75L2.94 15.44L4.81 9.56L0 5.87H6.37L8.25 0Z" fill="white"/>
+                        </svg>
+                        <span>Knowledge Institute of Technology, Salem</span>
+                    </div>
+                </div>
+
+                <div class="hero-description">
+                    <p>Welcome to the <strong>ASME KIOT Student Section</strong>, a student-driven community at Knowledge Institute of Technology (KIOT) dedicated to bringing engineering learning beyond the classroom. We conduct technical events, workshops, competitions, awareness programmes, and hands-on activities that help students explore mechanical engineering and related technologies.</p>
+                    <p>Our goal is simple — to learn together, build practical skills, and create opportunities for students to grow as engineers and leaders. Explore our journey, discover our events, and be part of the community.</p>
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">
+                        Explore Events
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+                            <path d="M1 11L11 1M11 1H1M11 1V11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary">
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="currentColor">
+                            <path d="M7.5 0C3.36 0 0 3.36 0 7.5S3.36 15 7.5 15 15 11.64 15 7.5 11.64 0 7.5 0z"/>
+                        </svg>
+                        Join ASME
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROUD BENCHMARKS SECTION ===== -->
+        <section class="section">
+            <div class="benchmarks">
+                <div class="benchmarks-header">
+                    <div class="benchmarks-title">
+                        <svg width="13.333" height="13.333" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="#003461" stroke-width="1.5"/>
+                        </svg>
+                        <span class="benchmarks-label">Proud Benchmarks</span>
+                    </div>
+                    <div class="benchmarks-meta">TELEMETRY 2024</div>
+                </div>
+
+                <div class="benchmarks-grid">
+                    <div class="benchmark-card">
+                        <div class="benchmark-value">50+</div>
+                        <div class="benchmark-label">Achievements</div>
+                    </div>
+                    <div class="benchmark-card">
+                        <div class="benchmark-value blue">35+</div>
+                        <div class="benchmark-label">Events &<br>Programmes</div>
+                    </div>
+                    <div class="benchmark-card small">
+                        <div class="benchmark-value-badge">
+                            <div class="benchmark-value">250+</div>
+                        </div>
+                        <div class="benchmark-label">Active Members</div>
+                    </div>
+                    <div class="benchmark-card small">
+                        <div class="benchmark-value-badge benchmark-value-badge-dark">
+                            <div class="benchmark-value">18+</div>
+                        </div>
+                        <div class="benchmark-label">Awards & Laurels</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ASME KIOT SECTION ===== -->
+        <section class="section">
+            <div class="about">
+                <div class="about-header">
+                    <div class="section-accent"></div>
+                    <div class="about-section-label">INSTITUTIONAL FOUNDATION</div>
+                </div>
+                <h2 class="about-heading">About ASME KIOT Student Section</h2>
+                <p class="about-text">The ASME KIOT Student Section is a student community established to connect engineering education with practical experience, bridging collegiate theoretical mastery with industrial implementation.</p>
+
+                <div class="vision-card">
+                    <div class="vision-header">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="color: #cce5ff;">
+                            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        <div class="vision-meta">CORE VISION</div>
+                    </div>
+                    <div class="vision-title">
+                        "To create an active engineering community where students can learn, innovate, collaborate, and grow together."
+                    </div>
+                </div>
+
+                <div class="mission-pillars">
+                    <div class="mission-header">
+                        <svg width="15" height="16.667" viewBox="0 0 15 16.667" fill="none">
+                            <path d="M7.5 1L3 4.5V15h9V4.5L7.5 1z" stroke="#003461" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="mission-title">Our Mission Pillars</div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-icon">
+                            <svg width="9.333" height="11.667" viewBox="0 0 10 12" fill="none" stroke="#003461" stroke-width="1.5">
+                                <path d="M1 11h8M1 1h8m-7 0v10m4-10v10m4-10v10"/>
+                            </svg>
+                        </div>
+                        <div class="pillar-text">Encourage practical learning and technical curiosity across diverse disciplines</div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-icon">
+                            <svg width="10.5" height="11.667" viewBox="0 0 11 12" fill="none" stroke="#003461" stroke-width="1.5">
+                                <path d="M1 11h9M6 1v10M1 5h9"/>
+                            </svg>
+                        </div>
+                        <div class="pillar-text">Organize meaningful technical and professional industry-vetted programmes</div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-icon">
+                            <svg width="5.833" height="11.667" viewBox="0 0 6 12" fill="none" stroke="#003461" stroke-width="1.5">
+                                <path d="M3 1v10M1 3h4M1 6h4M1 9h4"/>
+                            </svg>
+                        </div>
+                        <div class="pillar-text">Provide state and national opportunities for students to showcase their engineering skills</div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-icon">
+                            <svg width="14" height="7" viewBox="0 0 14 7" fill="none" stroke="#003461" stroke-width="1.5">
+                                <path d="M1 1h12M1 3.5h12M1 6h12"/>
+                            </svg>
+                        </div>
+                        <div class="pillar-text">Build teamwork, executive leadership, and structured professional communication abilities</div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-icon">
+                            <svg width="14" height="13.417" viewBox="0 0 14 13.417" fill="none" stroke="#003461" stroke-width="1.5">
+                                <path d="M7 1L2 4.5v7.917h10V4.5L7 1z"/>
+                            </svg>
+                        </div>
+                        <div class="pillar-text">Connect students with the wider ASME international engineering community</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="philosophy">
+                <div class="philosophy-label">CORE SECTION PHILOSOPHY</div>
+                <div class="philosophy-items">
+                    <span class="philosophy-item">Learning</span>
+                    <svg class="philosophy-separator" viewBox="0 0 11 11" fill="none" stroke="#999" stroke-width="1">
+                        <path d="M1 1L10 10M10 1L1 10"/>
+                    </svg>
+                    <span class="philosophy-item">Creating</span>
+                    <svg class="philosophy-separator" viewBox="0 0 11 11" fill="none" stroke="#999" stroke-width="1">
+                        <path d="M1 1L10 10M10 1L1 10"/>
+                    </svg>
+                    <span class="philosophy-item">Collaborating</span>
+                    <svg class="philosophy-separator" viewBox="0 0 11 11" fill="none" stroke="#999" stroke-width="1">
+                        <path d="M1 1L10 10M10 1L1 10"/>
+                    </svg>
+                    <span class="philosophy-item active">Leading</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PORTAL MODULES SECTION ===== -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-accent blue"></div>
+                    <div class="section-name">Portal Modules</div>
+                </div>
+                <div class="section-count">6 SECTIONS</div>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div>
+                        <div class="module-icon" style="background-color: #d3e4ff;">
+                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" stroke="#006398" stroke-width="1.5">
+                                <path d="M1 5h16v12H1z M1 5V3h16v2M3 8h12M3 11h12M3 14h12"/>
+                            </svg>
+                        </div>
+                        <div class="module-title">Events</div>
+                        <div class="module-description">Symposiums & workshops</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <div class="module-icon" style="background-color: #cce5ff;">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#006398" stroke-width="1.5">
+                                <rect x="1" y="1" width="8" height="8" rx="1"/>
+                                <rect x="11" y="1" width="8" height="8" rx="1"/>
+                                <rect x="1" y="11" width="8" height="8" rx="1"/>
+                                <rect x="11" y="11" width="8" height="8" rx="1"/>
+                            </svg>
+                        </div>
+                        <div class="module-title">Gallery</div>
+                        <div class="module-description">Moments & expos</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <div class="module-icon" style="background-color: #ffdcc3;">
+                            <svg width="16" height="21" viewBox="0 0 16 21" fill="none" stroke="#c65a1f" stroke-width="1.5">
+                                <path d="M8 1L11 8H18L12 12L14 19L8 15L2 19L4 12L-2 8H5L8 1Z"/>
+                            </svg>
+                        </div>
+                        <div class="module-title">Achievements</div>
+                        <div class="module-description">Conclave winners</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <div class="module-icon" style="background-color: #e2e7ff;">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#006398" stroke-width="1.5">
+                                <circle cx="10" cy="10" r="4"/>
+                                <path d="M10 1v4M10 15v4M1 10h4M15 10h4M3.5 3.5l2.8 2.8M13.7 13.7l2.8 2.8M16.5 3.5l-2.8 2.8M6.3 13.7l-2.8 2.8"/>
+                            </svg>
+                        </div>
+                        <div class="module-title">Membership</div>
+                        <div class="module-description">Enroll & renew badge</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <div class="module-icon" style="background-color: #d3e4ff;">
+                            <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="#006398" stroke-width="1.5">
+                                <path d="M1 8h20M18 1l3 7-3 8"/>
+                            </svg>
+                        </div>
+                        <div class="module-title">Resources</div>
+                        <div class="module-description">Standards & guides</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <div class="module-icon" style="background-color: #cce5ff;">
+                            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" stroke="#006398" stroke-width="1.5">
+                                <path d="M1 1h18v14H1V1z M5 5h10M5 9h10M5 13h6"/>
+                            </svg>
+                        </div>
+                        <div class="module-title">Contact</div>
+                        <div class="module-description">Council & enquiries</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INSTITUTIONAL AFFILIATION SECTION ===== -->
+        <section class="section">
+            <div class="institutional">
+                <div class="inst-header">
+                    <div class="inst-icon">
+                        <svg width="20.167" height="16.5" viewBox="0 0 24 20" fill="white">
+                            <path d="M1 19h22V7L12 1 1 7v12z M10 19v-8h4v8"/>
+                        </svg>
+                    </div>
+                    <div class="inst-info">
+                        <div class="inst-meta">INSTITUTIONAL AFFILIATION</div>
+                        <div class="inst-name">Knowledge Institute of Technology</div>
+                    </div>
+                </div>
+
+                <div class="inst-image">
+                    <img src="https://www.figma.com/api/mcp/asset/0b9d4993-9d97-4f7b-866e-6ede169e920c.png" alt="KIOT Campus">
+                    <div class="inst-image-overlay">
+                        <p>KIOT Campus • NH-544, Kakapalayam, Salem, Tamil Nadu 637504</p>
+                    </div>
+                </div>
+
+                <div class="inst-details">
+                    <div class="inst-detail-item">
+                        <svg class="inst-detail-icon" viewBox="0 0 10 14" fill="none" stroke="#424750" stroke-width="1.2">
+                            <path d="M5 1c-2.2 0-4 1.8-4 4 0 2.5 4 8 4 8s4-5.5 4-8c0-2.2-1.8-4-4-4z M5 6.5c-.8 0-1.5-.7-1.5-1.5S4.2 3.5 5 3.5s1.5.7 1.5 1.5S5.8 6.5 5 6.5z"/>
+                        </svg>
+                        <div class="inst-detail-text">Salem, Tamil Nadu, India</div>
+                    </div>
+                    <div class="inst-detail-item">
+                        <svg class="inst-detail-icon" viewBox="0 0 14 11" fill="none" stroke="#424750" stroke-width="1.2">
+                            <path d="M1 1h12l-6 5-6-5z M1 1v9h12V1"/>
+                        </svg>
+                        <div class="inst-detail-text">asme@kiot.ac.in</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="footer-text">
+                ASME KIOT STUDENT SECTION © 2025 • ADVANCING ENGINEERING FOR GLOBAL IMPACT
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
